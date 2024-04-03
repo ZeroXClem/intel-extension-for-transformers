@@ -1,0 +1,49 @@
+:orphan:
+
+:py:mod:`intel_extension_for_transformers.neural_chat.models.openai_model`
+==========================================================================
+
+.. py:module:: intel_extension_for_transformers.neural_chat.models.openai_model
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   intel_extension_for_transformers.neural_chat.models.openai_model.OpenAIModel
+
+
+
+
+.. py:class:: OpenAIModel(model_name, task, openai_config)
+
+
+
+
+   Customized class to operate on OpenAI models in the pipeline.
+
+   .. py:method:: predict(query, config: intel_extension_for_transformers.neural_chat.config.GenerationConfig = None)
+
+      Customized OpenAI model predict.
+
+      :param query: List[Dict], usually contains system prompt + user prompt.
+      :param config: GenerationConfig, provides the needed inference parameters such as top_p, max_tokens.
+
+      :returns: the result string of one single choice
+
+
+   .. py:method:: find_user_prompt(query)
+
+      Find in the query List[Dict] the user prompt.
+
+
+   .. py:method:: update_user_prompt(query, new_user_prompt)
+
+      Update the user prompt in the query List[Dict].
+
+
+

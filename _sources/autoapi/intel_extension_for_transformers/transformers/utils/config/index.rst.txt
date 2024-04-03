@@ -1,0 +1,195 @@
+:py:mod:`intel_extension_for_transformers.transformers.utils.config`
+====================================================================
+
+.. py:module:: intel_extension_for_transformers.transformers.utils.config
+
+.. autoapi-nested-parse::
+
+   Configs for intel extension for transformers.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   intel_extension_for_transformers.transformers.utils.config.QuantizationMethod
+   intel_extension_for_transformers.transformers.utils.config.ITREXQuantizationConfigMixin
+   intel_extension_for_transformers.transformers.utils.config.RtnConfig
+   intel_extension_for_transformers.transformers.utils.config.GPTQConfig
+   intel_extension_for_transformers.transformers.utils.config.AwqConfig
+   intel_extension_for_transformers.transformers.utils.config.TeqConfig
+   intel_extension_for_transformers.transformers.utils.config.AutoRoundConfig
+
+
+
+
+.. py:class:: QuantizationMethod
+
+
+
+
+   str(object='') -> str
+   str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+   Create a new string object from the given object. If encoding or
+   errors is specified, then the object must expose a data buffer
+   that will be decoded using the given encoding and error handler.
+   Otherwise, returns the result of object.__str__() (if defined)
+   or repr(object).
+   encoding defaults to sys.getdefaultencoding().
+   errors defaults to 'strict'.
+
+
+.. py:class:: ITREXQuantizationConfigMixin
+
+
+
+
+   Mixin class for quantization config
+
+   .. py:method:: update(**kwargs)
+
+      Updates attributes of this class instance with attributes from `kwargs` if they match existing atributtes,
+      returning all the unused kwargs.
+
+      :param kwargs: Dictionary of attributes to tentatively update this class.
+      :type kwargs: `Dict[str, Any]`
+
+      :returns: Dictionary containing all the key-value pairs that were not used to update the instance.
+      :rtype: `Dict[str, Any]`
+
+
+   .. py:method:: post_init_cpu()
+
+      Safety checker that arguments are correct
+
+
+   .. py:method:: post_init_xpu()
+
+      Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
+
+
+   .. py:method:: post_init_runtime()
+
+      Safety checker that arguments are correct - also replaces some NoneType arguments with their default values.
+
+
+   .. py:method:: to_json_file(json_file_path: Union[str, os.PathLike], use_diff: bool = True)
+
+      Save this instance to a JSON file.
+
+      :param json_file_path: Path to the JSON file in which this configuration instance's parameters will be saved.
+      :type json_file_path: `str` or `os.PathLike`
+
+
+   .. py:method:: save_pretrained(save_directory: Union[str, os.PathLike], push_to_hub: bool = False, **kwargs)
+
+      Save a configuration object to the directory `save_directory`, so that it can be re-loaded using the
+      [`~PretrainedConfig.from_pretrained`] class method.
+
+      :param save_directory: Directory where the configuration JSON file will be saved (will be created if it does not exist).
+      :type save_directory: `str` or `os.PathLike`
+      :param push_to_hub: Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the
+                          repository you want to push to with `repo_id` (will default to the name of `save_directory` in your
+                          namespace).
+      :type push_to_hub: `bool`, *optional*, defaults to `False`
+      :param kwargs: Additional key word arguments passed along to the [`~utils.PushToHubMixin.push_to_hub`] method.
+      :type kwargs: `Dict[str, Any]`, *optional*
+
+
+
+.. py:class:: RtnConfig(bits: int = 4, group_size: int = 32, compute_dtype: Any = None, weight_dtype: Any = None, scale_dtype: Any = None, mse_range: bool = False, use_double_quant=False, double_quant_scale_dtype=None, sym: bool = True, layer_wise: bool = False, use_ggml: bool = False, use_quant: bool = True, use_neural_speed: bool = False, llm_int8_skip_modules=None, **kwargs)
+
+
+
+
+   Mixin class for quantization config
+
+   .. py:method:: to_diff_dict() -> Dict[str, Any]
+
+      Removes all attributes from config which correspond to the default config attributes for better readability and
+      serializes to a Python dictionary.
+
+      :returns: Dictionary of all the attributes that make up this configuration instance,
+      :rtype: `Dict[str, Any]`
+
+
+
+.. py:class:: GPTQConfig(bits: int = 4, tokenizer: Any = None, dataset: str = 'NeelNanda/pile-10k', group_size: int = 32, compute_dtype: Any = None, weight_dtype: Any = None, scale_dtype: Any = None, use_double_quant=False, double_quant_scale_dtype=None, sym: bool = True, blocksize: int = 128, damp_percent: float = 0.1, desc_act: bool = False, nsamples: int = 128, max_input_length: Optional[int] = None, static_groups: bool = False, layer_wise: bool = False, use_ggml: bool = False, use_quant: bool = True, use_neural_speed: bool = False, llm_int8_skip_modules=None, **kwargs)
+
+
+
+
+   Mixin class for quantization config
+
+   .. py:method:: post_init_gptq()
+
+      Safety checker that arguments are correct
+
+
+   .. py:method:: to_diff_dict() -> Dict[str, Any]
+
+      Removes all attributes from config which correspond to the default config attributes for better readability and
+      serializes to a Python dictionary.
+
+      :returns: Dictionary of all the attributes that make up this configuration instance,
+      :rtype: `Dict[str, Any]`
+
+
+
+.. py:class:: AwqConfig(bits: int = 8, tokenizer: Any = None, dataset: str = 'NeelNanda/pile-10k', group_size: int = 32, compute_dtype: Any = None, weight_dtype: Any = None, scale_dtype: Any = None, use_double_quant=False, double_quant_scale_dtype=None, zero_point: bool = True, mse_range: bool = False, use_ggml: bool = False, use_quant: bool = True, use_neural_speed: bool = False, llm_int8_skip_modules=None, **kwargs)
+
+
+
+
+   Mixin class for quantization config
+
+   .. py:method:: to_diff_dict() -> Dict[str, Any]
+
+      Removes all attributes from config which correspond to the default config attributes for better readability and
+      serializes to a Python dictionary.
+
+      :returns: Dictionary of all the attributes that make up this configuration instance,
+      :rtype: `Dict[str, Any]`
+
+
+
+.. py:class:: TeqConfig(bits: int = 8, tokenizer: Any = None, dataset: str = 'NeelNanda/pile-10k', group_size: int = 32, compute_dtype: Any = None, weight_dtype: Any = None, scale_dtype: Any = None, use_double_quant=False, double_quant_scale_dtype=None, sym: bool = True, use_ggml: bool = False, use_neural_speed: bool = False, llm_int8_skip_modules=None, **kwargs)
+
+
+
+
+   Mixin class for quantization config
+
+   .. py:method:: to_diff_dict() -> Dict[str, Any]
+
+      Removes all attributes from config which correspond to the default config attributes for better readability and
+      serializes to a Python dictionary.
+
+      :returns: Dictionary of all the attributes that make up this configuration instance,
+      :rtype: `Dict[str, Any]`
+
+
+
+.. py:class:: AutoRoundConfig(bits: int = 8, tokenizer: Any = None, dataset: str = 'NeelNanda/pile-10k', group_size: int = 32, compute_dtype: Any = None, weight_dtype: Any = None, scale_dtype: Any = None, use_double_quant=False, double_quant_scale_dtype=None, sym: bool = True, lr: float = 0.0025, minmax_lr: float = 0.0025, use_quant_input: bool = True, nsamples: int = 128, iters: int = 200, use_ggml: bool = False, use_neural_speed: bool = False, llm_int8_skip_modules=None, **kwargs)
+
+
+
+
+   Mixin class for quantization config
+
+   .. py:method:: to_diff_dict() -> Dict[str, Any]
+
+      Removes all attributes from config which correspond to the default config attributes for better readability and
+      serializes to a Python dictionary.
+
+      :returns: Dictionary of all the attributes that make up this configuration instance,
+      :rtype: `Dict[str, Any]`
+
+
+

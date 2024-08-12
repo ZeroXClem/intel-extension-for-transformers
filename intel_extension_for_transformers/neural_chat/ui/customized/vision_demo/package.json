@@ -52,7 +52,7 @@
     "ramda": "^0.29.0",
     "sse.js": "^0.6.1",
     "svelte-notifications": "^0.9.98",
-    "flowbite-svelte": "^0.38.5",
+    "flowbite-svelte": "^0.46.15",
     "svrollbar": "^0.12.0"
   }
 }

@@ -47,7 +47,7 @@
   "type": "module",
   "dependencies": {
     "echarts": "^5.4.2",
-    "flowbite-svelte": "^0.38.5",
+    "flowbite-svelte": "^0.46.15",
     "fuse": "^0.4.0",
     "fuse.js": "^6.6.2",
     "ramda": "^0.29.0",
